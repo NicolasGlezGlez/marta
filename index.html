@@ -67,20 +67,53 @@
 
     <!-- ─── INICIO ──────────────────────────── -->
     <section id="inicio" class="page active">
+
+      <!-- Hero -->
       <div class="inicio">
-        <p class="inicio__eyebrow">Fotografía</p>
-        <h1 class="inicio__h1 font-display">
-          Naturaleza.
-          <span class="inicio__h1--accent">Arquitectura.</span>
-        </h1>
+        <h1 class="inicio__title font-display">Fotografía</h1>
         <p class="inicio__body">
           Capturo la esencia de lo natural y lo creado.<br>
           Fotografías que inspiran, conectan y cuentan historias.
         </p>
-        <button class="inicio__cta" onclick="showPage('arquitectura')">
+        <button class="inicio__cta" onclick="document.getElementById('mi-trabajo').scrollIntoView({behavior:'smooth'})">
           Ver trabajos
         </button>
       </div>
+
+      <!-- Mi Trabajo -->
+      <div class="mi-trabajo" id="mi-trabajo">
+        <p class="mi-trabajo__label">Mi trabajo</p>
+        <div class="mi-trabajo__grid">
+
+          <!-- Naturaleza -->
+          <div class="mi-trabajo__card" onclick="showPage('naturaleza')" tabindex="0" role="button" aria-label="Ver galería de Naturaleza">
+            <!-- FOTO: reemplaza src con  photos/naturaleza/card.jpg  -->
+            <img src="photos/naturaleza/card.jpg"
+                 alt="Fotografía de naturaleza"
+                 loading="lazy"
+                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80'">
+            <div class="mi-trabajo__overlay">
+              <span class="mi-trabajo__cat">Naturaleza</span>
+              <span class="mi-trabajo__link">Ver galería</span>
+            </div>
+          </div>
+
+          <!-- Arquitectura -->
+          <div class="mi-trabajo__card" onclick="showPage('arquitectura')" tabindex="0" role="button" aria-label="Ver galería de Arquitectura">
+            <!-- FOTO: reemplaza src con  photos/arquitectura/card.jpg  -->
+            <img src="photos/arquitectura/card.jpg"
+                 alt="Fotografía de arquitectura"
+                 loading="lazy"
+                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=1200&q=80'">
+            <div class="mi-trabajo__overlay">
+              <span class="mi-trabajo__cat">Arquitectura</span>
+              <span class="mi-trabajo__link">Ver galería</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </section>
 
 
@@ -89,11 +122,9 @@
 
       <!-- Hero -->
       <div class="arq-hero">
-        <p class="arq-hero__eyebrow">Arquitectura</p>
-        <h1 class="arq-hero__title font-display">Espacios. Luz. Diseño.</h1>
-        <div class="arq-hero__rule"></div>
+        <h1 class="arq-hero__title font-display">Arquitectura</h1>
         <p class="arq-hero__body">
-          Fotografías de arquitectura que realzan la belleza de cada estructura,<br>
+          Fotografías que realzan la belleza de cada estructura,
           jugando con la luz, la composición y la perspectiva.
         </p>
       </div>
@@ -239,9 +270,7 @@
     ─────────────────────────────────────────── -->
     <section id="naturaleza" class="page">
       <div class="placeholder-page">
-        <p class="placeholder-page__eyebrow">Galería</p>
         <h1 class="placeholder-page__title font-display">Naturaleza</h1>
-        <div class="placeholder-page__rule"></div>
         <p class="placeholder-page__note">Próximamente</p>
       </div>
     </section>
@@ -250,9 +279,7 @@
     <!-- ─── SOBRE MÍ ─────────────────────────── -->
     <section id="sobre-mi" class="page">
       <div class="placeholder-page">
-        <p class="placeholder-page__eyebrow">Conóceme</p>
         <h1 class="placeholder-page__title font-display">Sobre mí</h1>
-        <div class="placeholder-page__rule"></div>
         <p class="placeholder-page__note">Próximamente</p>
       </div>
     </section>
@@ -261,9 +288,7 @@
     <!-- ─── CONTACTO ─────────────────────────── -->
     <section id="contacto" class="page">
       <div class="placeholder-page">
-        <p class="placeholder-page__eyebrow">Hablemos</p>
         <h1 class="placeholder-page__title font-display">Contacto</h1>
-        <div class="placeholder-page__rule"></div>
         <p class="placeholder-page__note">Próximamente</p>
       </div>
     </section>
@@ -277,17 +302,10 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__icons">
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-           class="footer__icon-link" aria-label="Instagram">
+        <a href="https://www.instagram.com/martaportela96/" target="_blank" rel="noopener noreferrer"
+           class="footer__icon-link" aria-label="Instagram de Marta Portela">
           <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </a>
-        <a href="mailto:info@martaportela.com"
-           class="footer__icon-link" aria-label="Correo electrónico">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
           </svg>
         </a>
       </div>

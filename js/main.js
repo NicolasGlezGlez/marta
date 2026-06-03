@@ -4,9 +4,6 @@
 
 /* ---- SPA: Navegación entre páginas ---- */
 
-// Estado inicial: inicio activo → sin scroll
-document.body.classList.add('on-inicio');
-
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const page = document.getElementById(id);
@@ -15,9 +12,6 @@ function showPage(id) {
   document.querySelectorAll('.nav-link').forEach(l => {
     l.classList.toggle('active', l.dataset.page === id);
   });
-
-  // Bloquea scroll en inicio (sin contenido que requiera desplazamiento)
-  document.body.classList.toggle('on-inicio', id === 'inicio');
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }

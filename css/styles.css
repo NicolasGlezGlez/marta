@@ -33,8 +33,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Bloquea el scroll del body cuando inicio está activo */
-body.on-inicio { overflow: hidden; }
 
 img { display: block; max-width: 100%; }
 
@@ -193,47 +191,33 @@ main { padding-top: 4rem; }
    INICIO
    ============================================================ */
 .inicio {
-  height: calc(100dvh - 4rem);
-  overflow: hidden;
+  min-height: calc(100dvh - 4rem);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem 1.5rem;
+  padding: 5rem 1.5rem 4rem;
 }
 
-.inicio__eyebrow {
-  font-size: .65rem;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--accent);
-  margin-bottom: 2rem;
-}
-
-.inicio__h1 {
+.inicio__title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.8rem, 8vw, 5.5rem);
-  font-weight: 300;
-  color: var(--gray-900);
-  line-height: 1.1;
-}
-
-.inicio__h1--accent {
+  font-size: clamp(4.5rem, 14vw, 10rem);
   font-weight: 700;
-  color: var(--accent);
-  display: block;
-  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--gray-900);
+  line-height: 1;
+  margin-bottom: 1.75rem;
 }
 
 .inicio__body {
-  font-size: .9rem;
+  font-size: .875rem;
   font-weight: 300;
   color: var(--gray-500);
-  line-height: 1.75;
-  max-width: 22rem;
-  margin-bottom: 3rem;
+  line-height: 1.8;
+  max-width: 26rem;
+  margin-bottom: 2.5rem;
 }
 
 .inicio__cta {
@@ -250,49 +234,125 @@ main { padding-top: 4rem; }
 
 .inicio__cta:hover { background: var(--accent-dark); }
 
-/* ============================================================
-   ARQUITECTURA — Hero
-   ============================================================ */
-.arq-hero {
-  max-width: 768px;
+/* ---- Mi Trabajo ---- */
+.mi-trabajo {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 1rem 6rem;
   margin: 0 auto;
-  padding: 4rem 1.5rem 2.5rem;
-  text-align: center;
 }
 
-.arq-hero__eyebrow {
+@media (min-width: 640px)  { .mi-trabajo { padding-left: 1.5rem; padding-right: 1.5rem; } }
+@media (min-width: 1024px) { .mi-trabajo { padding-left: 3rem;   padding-right: 3rem; } }
+
+.mi-trabajo__label {
+  text-align: center;
   font-size: .65rem;
-  letter-spacing: .38em;
+  letter-spacing: .3em;
   text-transform: uppercase;
   font-weight: 500;
   color: var(--accent);
   margin-bottom: 1.5rem;
 }
 
-.arq-hero__title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.2rem, 6vw, 4rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  color: var(--gray-900);
-  line-height: 1.1;
-  text-wrap: balance;
-  margin-bottom: 1.25rem;
+.mi-trabajo__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5rem;
 }
 
-.arq-hero__rule {
-  width: 2.5rem;
-  height: 1px;
-  background: var(--gray-400);
-  margin: 0 auto 1.75rem;
+@media (max-width: 639px) {
+  .mi-trabajo__grid { grid-template-columns: 1fr; }
+}
+
+.mi-trabajo__card {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--gray-100);
+}
+
+.mi-trabajo__card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .65s cubic-bezier(.25,.46,.45,.94);
+  display: block;
+}
+
+.mi-trabajo__card:hover img { transform: scale(1.05); }
+
+.mi-trabajo__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.42);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  transition: background .3s;
+}
+
+.mi-trabajo__card:hover .mi-trabajo__overlay { background: rgba(0,0,0,.55); }
+
+.mi-trabajo__cat {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  font-weight: 400;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+}
+
+.mi-trabajo__link {
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+  font-weight: 400;
+  transition: color .2s;
+}
+
+.mi-trabajo__card:hover .mi-trabajo__link { color: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mi-trabajo__card img { transition: none; }
+}
+
+/* ============================================================
+   SECCIÓN HERO (Arquitectura, Naturaleza, etc.)
+   ============================================================ */
+.arq-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 52vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.5rem 3.5rem;
+  text-align: center;
+}
+
+.arq-hero__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--gray-900);
+  line-height: 1;
+  text-wrap: balance;
+  margin-bottom: 2rem;
 }
 
 .arq-hero__body {
-  font-size: .875rem;
+  font-size: .9rem;
   font-weight: 300;
   color: var(--gray-500);
   line-height: 1.8;
+  max-width: 36rem;
 }
 
 /* ============================================================
@@ -437,45 +497,35 @@ main { padding-top: 4rem; }
 
 /* ============================================================
    PLACEHOLDERS (Naturaleza, Sobre mí, Contacto)
+   Reutilizan el mismo hero de secciones
    ============================================================ */
 .placeholder-page {
-  min-height: calc(100vh - 4rem);
+  min-height: 52vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 5rem 1.5rem;
-}
-
-.placeholder-page__eyebrow {
-  font-size: .65rem;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--accent);
-  margin-bottom: 1.5rem;
+  padding: 5rem 1.5rem 3.5rem;
 }
 
 .placeholder-page__title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
-  font-weight: 300;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
   color: var(--gray-900);
-  margin-bottom: 1.5rem;
-}
-
-.placeholder-page__rule {
-  width: 2.5rem;
-  height: 1px;
-  background: var(--gray-200);
-  margin: 0 auto 1.5rem;
+  line-height: 1;
+  margin-bottom: 2rem;
 }
 
 .placeholder-page__note {
-  font-size: .8rem;
-  color: var(--gray-400);
+  font-size: .9rem;
+  color: var(--gray-500);
   font-weight: 300;
+  line-height: 1.8;
+  max-width: 36rem;
 }
 
 /* ============================================================
