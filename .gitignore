@@ -4,7 +4,10 @@ node_modules/
 # Originales sin optimizar (no se sirven en producción)
 photos/arquitectura/*.jpg
 photos/arquitectura/*.jpeg
+photos/viajes/*.jpg
+photos/viajes/*.jpeg
 !photos/arquitectura/optimized/
+!photos/viajes/optimized/
 
 # Carpetas heredadas con los originales
 /Exterior/

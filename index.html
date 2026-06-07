@@ -34,7 +34,7 @@
       <nav class="header__nav" aria-label="Navegación principal">
         <button class="nav-link active" onclick="showPage('inicio')"      data-page="inicio">Inicio</button>
         <button class="nav-link"        onclick="showPage('arquitectura')" data-page="arquitectura">Arquitectura</button>
-        <button class="nav-link"        onclick="showPage('naturaleza')"   data-page="naturaleza">Naturaleza</button>
+        <button class="nav-link"        onclick="showPage('viajes')"   data-page="viajes">Viajes</button>
         <button class="nav-link"        onclick="showPage('sobre-mi')"     data-page="sobre-mi">Sobre mí</button>
         <button class="nav-link"        onclick="showPage('contacto')"     data-page="contacto">Contacto</button>
       </nav>
@@ -52,7 +52,7 @@
       <nav>
         <button class="nav-link" onclick="showPage('inicio');      closeMenu()">Inicio</button>
         <button class="nav-link" onclick="showPage('arquitectura');closeMenu()">Arquitectura</button>
-        <button class="nav-link" onclick="showPage('naturaleza');  closeMenu()">Naturaleza</button>
+        <button class="nav-link" onclick="showPage('viajes');  closeMenu()">Viajes</button>
         <button class="nav-link" onclick="showPage('sobre-mi');    closeMenu()">Sobre mí</button>
         <button class="nav-link" onclick="showPage('contacto');    closeMenu()">Contacto</button>
       </nav>
@@ -85,15 +85,13 @@
         <p class="mi-trabajo__label">Mi trabajo</p>
         <div class="mi-trabajo__grid">
 
-          <!-- Naturaleza -->
-          <div class="mi-trabajo__card" onclick="showPage('naturaleza')" tabindex="0" role="button" aria-label="Ver galería de Naturaleza">
-            <!-- FOTO: reemplaza src con  photos/naturaleza/card.jpg  -->
-            <img src="photos/naturaleza/card.jpg"
-                 alt="Fotografía de naturaleza"
-                 loading="lazy"
-                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80'">
+          <!-- Viajes -->
+          <div class="mi-trabajo__card" onclick="showPage('viajes')" tabindex="0" role="button" aria-label="Ver galería de Viajes">
+            <img src="photos/viajes/optimized/bg-inicio.jpg"
+                 alt="Fotografía de viajes"
+                 loading="lazy">
             <div class="mi-trabajo__overlay">
-              <span class="mi-trabajo__cat">Naturaleza</span>
+              <span class="mi-trabajo__cat">Viajes</span>
               <span class="mi-trabajo__link">Ver galería</span>
             </div>
           </div>
@@ -164,12 +162,10 @@
     </section>
 
 
-    <!-- ─── NATURALEZA ───────────────────────
-         FOTOS: photos/naturaleza/nat-01.jpg, nat-02.jpg ...
-    ─────────────────────────────────────────── -->
-    <section id="naturaleza" class="page">
+    <!-- ─── VIAJES ───────────────────────────── -->
+    <section id="viajes" class="page">
       <div class="placeholder-page">
-        <h1 class="placeholder-page__title font-display">Naturaleza</h1>
+        <h1 class="placeholder-page__title font-display">Viajes</h1>
         <p class="placeholder-page__note">Próximamente</p>
       </div>
     </section>

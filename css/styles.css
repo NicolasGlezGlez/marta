@@ -346,7 +346,7 @@ main { padding-top: 5rem; }
 }
 
 /* ============================================================
-   SECCIÓN HERO (Arquitectura, Naturaleza, etc.)
+   SECCIÓN HERO (Arquitectura, Viajes, etc.)
    ============================================================ */
 .arq-hero {
   max-width: 900px;
@@ -522,7 +522,7 @@ main { padding-top: 5rem; }
 }
 
 /* ============================================================
-   PLACEHOLDERS (Naturaleza, Sobre mí, Contacto)
+   PLACEHOLDERS (Viajes, Sobre mí, Contacto)
    Reutilizan el mismo hero de secciones
    ============================================================ */
 .placeholder-page {
