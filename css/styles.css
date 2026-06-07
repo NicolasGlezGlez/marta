@@ -694,3 +694,172 @@ main { padding-top: 5rem; }
 .lightbox__nav:hover { color: #fff; }
 .lightbox__prev { left: 0; }
 .lightbox__next { right: 0; }
+
+/* ============================================================
+   VIAJES — Sección
+   ============================================================ */
+
+/* Header */
+.viajes-header {
+  text-align: center;
+  padding: 4rem 1.5rem 2rem;
+}
+.viajes-header__title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: .05em;
+  color: var(--black);
+  margin-bottom: .75rem;
+}
+.viajes-header__sub {
+  color: var(--gray-500);
+  font-size: .9rem;
+  letter-spacing: .05em;
+}
+
+/* Filtros (fila 1 y fila 2) */
+.viajes-filters {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 0 1.5rem .75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .5rem;
+}
+.viajes-filters--ciudades {
+  padding-bottom: 2rem;
+  min-height: 0;
+}
+.viajes-filters--ciudades:empty {
+  padding: 0;
+}
+
+/* Ciudad block */
+.viajes-ciudad {
+  max-width: 1280px;
+  margin: 0 auto 4rem;
+  padding: 0 1rem;
+}
+@media (min-width: 640px)  { .viajes-ciudad { padding: 0 1.5rem; } }
+@media (min-width: 1024px) { .viajes-ciudad { padding: 0 3rem; } }
+
+.viajes-ciudad__titulo {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 300;
+  letter-spacing: .08em;
+  color: var(--black);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+/* Grid de fotos: 3 columnas, 2 filas = 6 fotos */
+.viajes-ciudad__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .5rem;
+}
+@media (min-width: 640px)  { .viajes-ciudad__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 768px)  { .viajes-ciudad__grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* Última foto con overlay "Ver galería completa" */
+.gal-item--ver-mas {
+  position: relative;
+  cursor: pointer;
+}
+.gal-item__ver-mas {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 15, 15, .55);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1.2rem;
+  z-index: 2;
+  transition: opacity .3s;
+}
+.gal-item--ver-mas:hover .gal-item__ver-mas {
+  background: rgba(15, 15, 15, .68);
+}
+
+.btn-ver-galeria {
+  background: transparent;
+  color: #fff;
+  border: none;
+  padding: 0;
+  font-size: .62rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.6;
+  text-shadow: 0 1px 4px rgba(0,0,0,.4);
+  pointer-events: none;
+}
+.btn-ver-galeria strong {
+  font-weight: 600;
+  display: block;
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: none;
+}
+
+/* ============================================================
+   VIAJES — Galería completa (página)
+   ============================================================ */
+.viajes-full-gallery {
+  min-height: 100vh;
+}
+.viajes-full__header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 1.5rem 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+@media (min-width: 1024px) { .viajes-full__header { padding: 2rem 3rem 1.5rem; } }
+
+.viajes-full__back {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 9999px;
+  padding: .45rem 1.2rem;
+  font-size: .62rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: border-color .2s, color .2s;
+  background: transparent;
+}
+.viajes-full__back:hover {
+  border-color: var(--gray-400);
+  color: var(--gray-900);
+}
+
+.viajes-full__title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 300;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+/* El grid de la galería completa reutiliza viajes-ciudad__grid */
+.viajes-gallery--full {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem 6rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .5rem;
+}
+@media (min-width: 640px)  { .viajes-gallery--full { grid-template-columns: repeat(2, 1fr); padding: 0 1.5rem 6rem; } }
+@media (min-width: 768px)  { .viajes-gallery--full { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px) { .viajes-gallery--full { padding: 0 3rem 6rem; } }

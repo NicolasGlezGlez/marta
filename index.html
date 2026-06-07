@@ -220,9 +220,46 @@
 
     <!-- ─── VIAJES ───────────────────────────── -->
     <section id="viajes" class="page">
-      <div class="placeholder-page">
-        <h1 class="placeholder-page__title font-display">Viajes</h1>
-        <p class="placeholder-page__note">Próximamente</p>
+
+      <div class="arq-hero">
+        <h1 class="arq-hero__title font-display">Viajes</h1>
+        <p class="arq-hero__body">Fotografías de los rincones del mundo que me han marcado.</p>
+      </div>
+
+      <!-- Filtros fila 1: Todas + Países -->
+      <div class="viajes-filters viajes-filters--paises">
+        <button class="filter-btn active" data-pais="todas">Todas</button>
+        <button class="filter-btn" data-pais="india">India</button>
+        <button class="filter-btn" data-pais="qatar">Qatar</button>
+        <button class="filter-btn" data-pais="islandia">Islandia</button>
+        <button class="filter-btn" data-pais="alemania">Alemania</button>
+      </div>
+
+      <!-- Filtros fila 2: Ciudades del país activo -->
+      <div class="viajes-filters viajes-filters--ciudades" id="ciudadesFiltros">
+        <!-- generado por JS -->
+      </div>
+
+      <!-- Galería de viajes -->
+      <div class="viajes-gallery" id="viajesGallery">
+        <!-- generado por JS -->
+      </div>
+
+    </section>
+
+    <!-- ─── VIAJES: Galería completa (overlay) ───── -->
+    <section id="viajesGaleriaCompleta" class="page viajes-full-gallery">
+      <div class="viajes-full__header">
+        <button class="viajes-full__back" onclick="cerrarGaleriaCompleta()">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Volver a Viajes
+        </button>
+        <h2 class="viajes-full__title font-display" id="galeriaCompletaTitulo"></h2>
+      </div>
+      <div class="viajes-gallery viajes-gallery--full" id="galeriaCompletaGrid">
+        <!-- generado por JS -->
       </div>
     </section>
 

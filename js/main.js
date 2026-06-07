@@ -284,3 +284,294 @@ function showPage(id) {
     if (e.key === 'ArrowRight') navigate(+1);
   });
 })();
+
+
+/* ============================================================
+   VIAJES — Galería
+   ============================================================ */
+(function () {
+
+  /* ── Datos ──────────────────────────────────────────────── */
+  const CIUDADES = [
+    {
+      id:     'amritsar',
+      nombre: 'Amritsar',
+      pais:   'india',
+      path:   'photos/viajes/optimized/India/Amritsar/',
+      total:  18
+    },
+    {
+      id:     'delhi',
+      nombre: 'Delhi',
+      pais:   'india',
+      path:   'photos/viajes/optimized/India/Delhi/',
+      total:  30
+    },
+    {
+      id:     'sikandra',
+      nombre: 'Sikandra',
+      pais:   'india',
+      path:   'photos/viajes/optimized/India/Sikandra/',
+      total:  9
+    },
+    {
+      id:     'jodhpur',
+      nombre: 'Jodhpur',
+      pais:   'india',
+      path:   'photos/viajes/optimized/India/Jodhpur/',
+      total:  6
+    },
+    {
+      id:     'doha',
+      nombre: 'Doha',
+      pais:   'qatar',
+      path:   'photos/viajes/optimized/Qatar/Doha/',
+      total:  30
+    },
+    {
+      id:     'islandia',
+      nombre: 'Islandia',
+      pais:   'islandia',
+      path:   'photos/viajes/optimized/Islandia/',
+      total:  39
+    },
+    {
+      id:     'bochum',
+      nombre: 'Bochum',
+      pais:   'alemania',
+      path:   'photos/viajes/optimized/Alemania/Bochum/',
+      total:  39
+    }
+  ];
+
+  /* Orden fijo en vista "todas" */
+  const ORDEN_TODAS = ['amritsar','delhi','sikandra','jodhpur','doha','islandia','bochum'];
+
+  const CIUDADES_POR_PAIS = {
+    india:    ['amritsar','delhi','sikandra','jodhpur'],
+    qatar:    ['doha'],
+    islandia: ['islandia'],
+    alemania: ['bochum']
+  };
+
+  /* Estado */
+  let paisActivo    = 'todas';
+  let ciudadActiva  = null; // null = todas las del país
+
+  /* ── Elementos ──────────────────────────────────────────── */
+  const filtrosPaises   = document.querySelector('.viajes-filters--paises');
+  const filtrosCiudades = document.getElementById('ciudadesFiltros');
+  const gallery         = document.getElementById('viajesGallery');
+
+  /* ── Helpers ────────────────────────────────────────────── */
+  function getCiudad(id) {
+    return CIUDADES.find(c => c.id === id);
+  }
+
+  function ciudadesVisibles() {
+    if (paisActivo === 'todas') {
+      return ORDEN_TODAS.map(id => getCiudad(id));
+    }
+    const ids = CIUDADES_POR_PAIS[paisActivo] || [];
+    if (ciudadActiva && ids.includes(ciudadActiva)) {
+      return [getCiudad(ciudadActiva)];
+    }
+    return ids.map(id => getCiudad(id));
+  }
+
+  /* ── Renderizado filtros ciudades ───────────────────────── */
+  function renderFiltrosCiudades() {
+    filtrosCiudades.innerHTML = '';
+    if (paisActivo === 'todas') return;
+
+    const ids = CIUDADES_POR_PAIS[paisActivo] || [];
+    if (ids.length <= 1) return; // sin fila 2 si solo hay una ciudad
+
+    ids.forEach(id => {
+      const ciudad = getCiudad(id);
+      const btn    = document.createElement('button');
+      btn.className   = 'filter-btn' + (ciudadActiva === id ? ' active' : '');
+      btn.textContent = ciudad.nombre;
+      btn.dataset.ciudad = id;
+      btn.addEventListener('click', () => {
+        ciudadActiva = ciudadActiva === id ? null : id;
+        renderFiltrosCiudades();
+        renderGallery();
+      });
+      filtrosCiudades.appendChild(btn);
+    });
+  }
+
+  /* ── Renderizado galería ────────────────────────────────── */
+  function makeGalItem(src, alt, idx, ciudadId) {
+    const div = document.createElement('div');
+    div.className       = 'gal-item';
+    div.tabIndex        = 0;
+    div.dataset.viajIdx = idx;
+    div.dataset.ciudad  = ciudadId;
+
+    const img = document.createElement('img');
+    img.src     = src;
+    img.alt     = alt;
+    img.loading = 'lazy';
+
+    const overlay = document.createElement('div');
+    overlay.className = 'gal-overlay';
+    const label = document.createElement('span');
+    label.className = 'gal-overlay__label';
+    label.textContent = alt;
+    overlay.appendChild(label);
+
+    div.appendChild(img);
+    div.appendChild(overlay);
+    return div;
+  }
+
+  function renderGallery() {
+    gallery.innerHTML = '';
+    const ciudades = ciudadesVisibles();
+
+    ciudades.forEach(ciudad => {
+      const section = document.createElement('div');
+      section.className = 'viajes-ciudad';
+
+      const titulo = document.createElement('h2');
+      titulo.className   = 'viajes-ciudad__titulo font-display';
+      titulo.textContent = ciudad.nombre;
+      section.appendChild(titulo);
+
+      const grid = document.createElement('div');
+      grid.className = 'viajes-ciudad__grid';
+
+      const mostrar = Math.min(6, ciudad.total);
+      for (let i = 1; i <= mostrar; i++) {
+        const src  = ciudad.path + i + '.jpg';
+        const alt  = ciudad.nombre + ' ' + i;
+        const item = makeGalItem(src, alt, i - 1, ciudad.id);
+
+        // En la última foto, añadir overlay "Ver galería completa"
+        if (i === mostrar && ciudad.total > 6) {
+          item.classList.add('gal-item--ver-mas');
+          const verMas = document.createElement('div');
+          verMas.className = 'gal-item__ver-mas';
+          const texto = document.createElement('div');
+          texto.className = 'btn-ver-galeria';
+          texto.innerHTML = 'Ver galería completa de <br><strong>' + ciudad.nombre + '</strong>';
+          verMas.appendChild(texto);
+          item.appendChild(verMas);
+          // Toda la imagen es clickeable → abre galería completa
+          item.addEventListener('click', e => {
+            e.stopPropagation();
+            abrirGaleriaCompleta(ciudad.id);
+          });
+        }
+
+        grid.appendChild(item);
+      }
+
+      section.appendChild(grid);
+      gallery.appendChild(section);
+    });
+
+    // Lightbox en la galería de ciudades
+    bindLightboxViajes();
+  }
+
+  /* ── Galería completa ───────────────────────────────────── */
+  function abrirGaleriaCompleta(ciudadId) {
+    const ciudad = getCiudad(ciudadId);
+    const titulo = document.getElementById('galeriaCompletaTitulo');
+    const grid   = document.getElementById('galeriaCompletaGrid');
+
+    titulo.textContent = ciudad.nombre;
+    grid.innerHTML     = '';
+
+    for (let i = 1; i <= ciudad.total; i++) {
+      const src  = ciudad.path + i + '.jpg';
+      const alt  = ciudad.nombre + ' ' + i;
+      const item = makeGalItem(src, alt, i - 1, ciudadId);
+      grid.appendChild(item);
+    }
+
+    // Activar página
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('viajesGaleriaCompleta').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    bindLightboxViajes();
+  }
+
+  function cerrarGaleriaCompleta() {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('viajes').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  window.cerrarGaleriaCompleta = cerrarGaleriaCompleta;
+
+  /* ── Lightbox viajes ────────────────────────────────────── */
+  function bindLightboxViajes() {
+    const lb    = document.getElementById('lightbox');
+    const img   = document.getElementById('lightboxImg');
+    const label = document.getElementById('lightboxLabel');
+
+    function visibleItems() {
+      // items del contenedor activo
+      const activePage = document.querySelector('.page.active');
+      if (!activePage) return [];
+      return Array.from(activePage.querySelectorAll('.gal-item'));
+    }
+
+    function openLb(idx) {
+      const items = visibleItems();
+      const item  = items[idx];
+      if (!item) return;
+      // no abrir lightbox si se clicó el botón ver-más
+      if (item.classList.contains('gal-item--ver-mas')) return;
+      const i = item.querySelector('img');
+      const s = item.querySelector('.gal-overlay__label');
+      img.src           = i ? i.src  : '';
+      img.alt           = i ? i.alt  : '';
+      label.textContent = s ? s.textContent : '';
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      lb._viajesItems = items;
+      lb._viajesIdx   = idx;
+    }
+
+    // Delegar clicks en el gallery container
+    [gallery, document.getElementById('galeriaCompletaGrid')].forEach(container => {
+      if (!container) return;
+      container.addEventListener('click', e => {
+        // si el click viene del botón ver-más, ignorar
+        if (e.target.closest('.gal-item__ver-mas')) return;
+        const item  = e.target.closest('.gal-item');
+        if (!item) return;
+        const items = visibleItems();
+        const idx   = items.indexOf(item);
+        if (idx !== -1) openLb(idx);
+      }, { capture: false });
+    });
+  }
+
+  /* ── Filtros países ─────────────────────────────────────── */
+  filtrosPaises.addEventListener('click', e => {
+    const btn = e.target.closest('[data-pais]');
+    if (!btn) return;
+
+    paisActivo   = btn.dataset.pais;
+    ciudadActiva = null;
+
+    filtrosPaises.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.toggle('active', b === btn);
+    });
+
+    renderFiltrosCiudades();
+    renderGallery();
+  });
+
+  /* ── Init ───────────────────────────────────────────────── */
+  renderFiltrosCiudades();
+  renderGallery();
+
+})();

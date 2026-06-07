@@ -1,6 +1,9 @@
 .claude/
 node_modules/
 
+# Archivos temporales FUSE (Docker/WSL)
+.fuse_hidden*
+
 # Originales sin optimizar (no se sirven en producción)
 photos/arquitectura/*.jpg
 photos/arquitectura/*.jpeg
