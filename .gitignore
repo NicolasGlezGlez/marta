@@ -1,1 +1,12 @@
 .claude/
+node_modules/
+
+# Originales sin optimizar (no se sirven en producción)
+photos/arquitectura/*.jpg
+photos/arquitectura/*.jpeg
+!photos/arquitectura/optimized/
+
+# Carpetas heredadas con los originales
+/Exterior/
+/Interior/
+/Urbano/
