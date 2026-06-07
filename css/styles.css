@@ -196,35 +196,34 @@ main { padding-top: 5rem; }
    INICIO
    ============================================================ */
 .inicio {
-  min-height: calc(100dvh - 5rem);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 3rem 1.5rem 3rem;
+  padding: .25rem 1.5rem 1rem;
 }
 
 .inicio__title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.4rem, 12vw, 10rem);
+  font-size: clamp(1.8rem, 6vw, 4.5rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .03em;
-  color: var(--gray-900);
+  color: var(--accent);
   line-height: 1;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1rem;
   max-width: 100%;
-  word-break: break-word;
+  white-space: nowrap;
 }
 
 .inicio__body {
-  font-size: .875rem;
+  font-size: .8rem;
   font-weight: 300;
   color: var(--gray-500);
-  line-height: 1.8;
+  line-height: 1.6;
   max-width: min(26rem, 90vw);
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .inicio__cta {
@@ -235,37 +234,55 @@ main { padding-top: 5rem; }
   letter-spacing: .2em;
   text-transform: uppercase;
   font-weight: 500;
-  padding: .9rem 2.25rem;
+  padding: .85rem 2.25rem;
   transition: background .2s;
 }
 
 .inicio__cta:hover { background: var(--accent-dark); }
 
 /* ---- Mi Trabajo ---- */
+#inicio.page.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100dvh - 5rem - 70px);
+  gap: 2.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1.25rem;
+}
+
+.inicio,
+.mi-trabajo { width: 100%; }
+
 .mi-trabajo {
   width: 100%;
   max-width: 1280px;
-  padding: 0 1rem 6rem;
+  padding: 0 1rem;
   margin: 0 auto;
+  text-align: center;
 }
 
 @media (min-width: 640px)  { .mi-trabajo { padding-left: 1.5rem; padding-right: 1.5rem; } }
 @media (min-width: 1024px) { .mi-trabajo { padding-left: 3rem;   padding-right: 3rem; } }
 
 .mi-trabajo__label {
+  display: block;
   text-align: center;
-  font-size: .65rem;
+  font-size: .6rem;
   letter-spacing: .3em;
   text-transform: uppercase;
   font-weight: 500;
   color: var(--accent);
-  margin-bottom: 1.5rem;
+  margin: 0 auto 1rem;
 }
 
 .mi-trabajo__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: .5rem;
+  gap: .75rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 @media (max-width: 639px) {
@@ -274,7 +291,8 @@ main { padding-top: 5rem; }
 
 .mi-trabajo__card {
   position: relative;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 9;
+  max-height: 28vh;
   overflow: hidden;
   cursor: pointer;
   background: var(--gray-100);
@@ -333,34 +351,32 @@ main { padding-top: 5rem; }
 .arq-hero {
   max-width: 900px;
   margin: 0 auto;
-  min-height: 52vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5rem 1.5rem 3.5rem;
+  padding: 3rem 1.5rem 2.5rem;
   text-align: center;
 }
 
 .arq-hero__title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.2rem, 9vw, 7rem);
+  font-size: clamp(1.6rem, 5vw, 3.5rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .04em;
-  color: var(--gray-900);
+  color: var(--accent);
   line-height: 1;
-  text-wrap: balance;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   max-width: 100%;
-  word-break: break-word;
+  white-space: nowrap;
 }
 
 .arq-hero__body {
-  font-size: .875rem;
+  font-size: .8rem;
   font-weight: 300;
-  color: var(--gray-500);
-  line-height: 1.8;
+  color: var(--gray-600);
+  line-height: 1.7;
   max-width: min(36rem, 90vw);
   padding: 0 .5rem;
 }
@@ -521,15 +537,15 @@ main { padding-top: 5rem; }
 
 .placeholder-page__title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.2rem, 9vw, 7rem);
+  font-size: clamp(1.6rem, 5vw, 3.5rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .04em;
-  color: var(--gray-900);
+  color: var(--accent);
   line-height: 1;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   max-width: 100%;
-  word-break: break-word;
+  white-space: nowrap;
 }
 
 .placeholder-page__note {
@@ -662,3 +678,19 @@ main { padding-top: 5rem; }
   font-weight: 300;
   white-space: nowrap;
 }
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,.6);
+  font-size: 3rem;
+  font-weight: 200;
+  padding: 1rem 1.25rem;
+  line-height: 1;
+  transition: color .15s;
+  user-select: none;
+}
+.lightbox__nav:hover { color: #fff; }
+.lightbox__prev { left: 0; }
+.lightbox__next { right: 0; }

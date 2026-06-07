@@ -100,8 +100,7 @@
 
           <!-- Arquitectura -->
           <div class="mi-trabajo__card" onclick="showPage('arquitectura')" tabindex="0" role="button" aria-label="Ver galería de Arquitectura">
-            <!-- FOTO: reemplaza src con  photos/arquitectura/card.jpg  -->
-            <img src="photos/arquitectura/card.jpg"
+            <img src="photos/arquitectura/ext-01.jpg"
                  alt="Fotografía de arquitectura"
                  loading="lazy"
                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=1200&q=80'">
@@ -135,7 +134,6 @@
         <button class="filter-btn active" data-filter="todas">Todas</button>
         <button class="filter-btn" data-filter="exterior">Exterior</button>
         <button class="filter-btn" data-filter="interior">Interior</button>
-        <button class="filter-btn" data-filter="detalles">Detalles</button>
         <button class="filter-btn" data-filter="urbano">Urbano</button>
       </div>
 
@@ -159,107 +157,7 @@
            ───────────────────────────────────────────────────────────────── -->
       <div class="arq-gallery">
         <div class="gallery-grid" id="gallery">
-
-          <!-- Fila 1 -->
-          <div class="gal-item" data-category="exterior" tabindex="0" role="button" aria-label="Ver foto exterior">
-            <!-- FOTO: reemplaza src con  photos/arquitectura/ext-01.jpg  -->
-            <img src="photos/arquitectura/ext-01.jpg"
-                 alt="Fachada minimalista"
-                 loading="lazy"
-                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=800&q=80'">
-            <div class="gal-overlay">
-              <span class="gal-overlay__label">Exterior</span>
-            </div>
-          </div>
-
-          <div class="gal-item" data-category="interior" tabindex="0" role="button" aria-label="Ver foto interior">
-            <!-- FOTO: reemplaza src con  photos/arquitectura/int-01.jpg  -->
-            <img src="photos/arquitectura/int-01.jpg"
-                 alt="Interior con luz natural"
-                 loading="lazy"
-                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80'">
-            <div class="gal-overlay">
-              <span class="gal-overlay__label">Interior</span>
-            </div>
-          </div>
-
-          <div class="gal-item" data-category="detalles" tabindex="0" role="button" aria-label="Ver foto de detalle">
-            <!-- FOTO: reemplaza src con  photos/arquitectura/det-01.jpg  -->
-            <img src="photos/arquitectura/det-01.jpg"
-                 alt="Detalle geométrico"
-                 loading="lazy"
-                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1545486332-9e0999c535b2?auto=format&fit=crop&w=800&q=80'">
-            <div class="gal-overlay">
-              <span class="gal-overlay__label">Detalles</span>
-            </div>
-          </div>
-
-          <!-- Fila 2 -->
-          <div class="gal-item" data-category="exterior" tabindex="0" role="button" aria-label="Ver foto exterior">
-            <!-- FOTO: reemplaza src con  photos/arquitectura/ext-02.jpg  -->
-            <img src="photos/arquitectura/ext-02.jpg"
-                 alt="Edificio contemporáneo"
-                 loading="lazy"
-                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=800&q=80'">
-            <div class="gal-overlay">
-              <span class="gal-overlay__label">Exterior</span>
-            </div>
-          </div>
-
-          <div class="gal-item" data-category="detalles" tabindex="0" role="button" aria-label="Ver foto de detalle">
-            <!-- FOTO: reemplaza src con  photos/arquitectura/det-02.jpg  -->
-            <img src="photos/arquitectura/det-02.jpg"
-                 alt="Ángulo geométrico"
-                 loading="lazy"
-                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80'">
-            <div class="gal-overlay">
-              <span class="gal-overlay__label">Detalles</span>
-            </div>
-          </div>
-
-          <div class="gal-item" data-category="exterior" tabindex="0" role="button" aria-label="Ver foto exterior">
-            <!-- FOTO: reemplaza src con  photos/arquitectura/ext-03.jpg  -->
-            <img src="photos/arquitectura/ext-03.jpg"
-                 alt="Fachada con luz"
-                 loading="lazy"
-                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80'">
-            <div class="gal-overlay">
-              <span class="gal-overlay__label">Exterior</span>
-            </div>
-          </div>
-
-          <!-- Fila 3 -->
-          <div class="gal-item" data-category="interior" tabindex="0" role="button" aria-label="Ver foto interior">
-            <!-- FOTO: reemplaza src con  photos/arquitectura/int-02.jpg  -->
-            <img src="photos/arquitectura/int-02.jpg"
-                 alt="Interior curvo"
-                 loading="lazy"
-                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507149677524-84b3cc12dfad?auto=format&fit=crop&w=800&q=80'">
-            <div class="gal-overlay">
-              <span class="gal-overlay__label">Interior</span>
-            </div>
-          </div>
-
-          <div class="gal-item" data-category="urbano" tabindex="0" role="button" aria-label="Ver foto urbana">
-            <!-- FOTO: reemplaza src con  photos/arquitectura/urb-01.jpg  -->
-            <img src="photos/arquitectura/urb-01.jpg"
-                 alt="Paisaje urbano"
-                 loading="lazy"
-                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=80'">
-            <div class="gal-overlay">
-              <span class="gal-overlay__label">Urbano</span>
-            </div>
-          </div>
-
-          <!-- Tarjeta CTA -->
-          <div class="gal-cta" id="galCta" tabindex="0" role="button" aria-label="Ver galería completa">
-            <svg class="gal-cta__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-            <span class="gal-cta__label">Ver imagen</span>
-          </div>
-
+          <!-- Las fotos se generan dinámicamente en main.js -->
         </div><!-- /gallery-grid -->
       </div><!-- /arq-gallery -->
 
@@ -327,7 +225,9 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </button>
+    <button class="lightbox__nav lightbox__prev" id="lbPrev" aria-label="Anterior">&#8249;</button>
     <img id="lightboxImg" class="lightbox__img" src="" alt="">
+    <button class="lightbox__nav lightbox__next" id="lbNext" aria-label="Siguiente">&#8250;</button>
     <p id="lightboxLabel" class="lightbox__label"></p>
   </div>
 
