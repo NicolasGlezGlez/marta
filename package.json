@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "optimize": "node scripts/optimize-photos.js"
+    "optimize": "node scripts/optimize-photos.js",
+    "icons": "node scripts/generate-icons.js"
   },
   "devDependencies": {
     "sharp": "^0.33.5"
