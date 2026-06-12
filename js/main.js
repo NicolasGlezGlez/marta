@@ -200,7 +200,8 @@ function showPage(id) {
   resetAndLoad();
 
   // ---- Filtro ----
-  const btns = document.querySelectorAll('.filter-btn');
+  // Solo los botones de Arquitectura (los de Viajes usan data-pais)
+  const btns = document.querySelectorAll('.filter-btn[data-filter]');
 
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -231,6 +232,7 @@ function showPage(id) {
     img.src           = i ? i.src : '';
     img.alt           = i ? i.alt : '';
     label.textContent = s ? s.textContent : '';
+    lb.dataset.mode = 'arquitectura';
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -242,6 +244,7 @@ function showPage(id) {
   }
 
   function navigate(dir) {
+    if (lb.dataset.mode === 'viajes') return;
     const items = visibleItems();
     currentIdx = (currentIdx + dir + items.length) % items.length;
     const item = items[currentIdx];
@@ -443,14 +446,16 @@ function showPage(id) {
       const grid = document.createElement('div');
       grid.className = 'viajes-ciudad__grid';
 
-      const mostrar = Math.min(6, ciudad.total);
+      // Con un país filtrado se muestran todas las fotos;
+      // el recorte + "Ver galería completa" solo aplica en "Todas"
+      const mostrar = paisActivo === 'todas' ? Math.min(6, ciudad.total) : ciudad.total;
       for (let i = 1; i <= mostrar; i++) {
         const src  = ciudad.path + i + '.jpg';
         const alt  = ciudad.nombre + ' ' + i;
         const item = makeGalItem(src, alt, i - 1, ciudad.id);
 
         // En la última foto, añadir overlay "Ver galería completa"
-        if (i === mostrar && ciudad.total > 6) {
+        if (paisActivo === 'todas' && i === mostrar && ciudad.total > 6) {
           item.classList.add('gal-item--ver-mas');
           const verMas = document.createElement('div');
           verMas.className = 'gal-item__ver-mas';
@@ -472,9 +477,6 @@ function showPage(id) {
       section.appendChild(grid);
       gallery.appendChild(section);
     });
-
-    // Lightbox en la galería de ciudades
-    bindLightboxViajes();
   }
 
   /* ── Galería completa ───────────────────────────────────── */
@@ -497,8 +499,6 @@ function showPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('viajesGaleriaCompleta').classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    bindLightboxViajes();
   }
 
   function cerrarGaleriaCompleta() {
@@ -510,49 +510,75 @@ function showPage(id) {
   window.cerrarGaleriaCompleta = cerrarGaleriaCompleta;
 
   /* ── Lightbox viajes ────────────────────────────────────── */
-  function bindLightboxViajes() {
-    const lb    = document.getElementById('lightbox');
-    const img   = document.getElementById('lightboxImg');
-    const label = document.getElementById('lightboxLabel');
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lightboxImg');
+  const lbLabel = document.getElementById('lightboxLabel');
+  let lbItems = [];
+  let lbIdx   = 0;
 
-    function visibleItems() {
-      // items del contenedor activo
-      const activePage = document.querySelector('.page.active');
-      if (!activePage) return [];
-      return Array.from(activePage.querySelectorAll('.gal-item'));
-    }
-
-    function openLb(idx) {
-      const items = visibleItems();
-      const item  = items[idx];
-      if (!item) return;
-      // no abrir lightbox si se clicó el botón ver-más
-      if (item.classList.contains('gal-item--ver-mas')) return;
-      const i = item.querySelector('img');
-      const s = item.querySelector('.gal-overlay__label');
-      img.src           = i ? i.src  : '';
-      img.alt           = i ? i.alt  : '';
-      label.textContent = s ? s.textContent : '';
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      lb._viajesItems = items;
-      lb._viajesIdx   = idx;
-    }
-
-    // Delegar clicks en el gallery container
-    [gallery, document.getElementById('galeriaCompletaGrid')].forEach(container => {
-      if (!container) return;
-      container.addEventListener('click', e => {
-        // si el click viene del botón ver-más, ignorar
-        if (e.target.closest('.gal-item__ver-mas')) return;
-        const item  = e.target.closest('.gal-item');
-        if (!item) return;
-        const items = visibleItems();
-        const idx   = items.indexOf(item);
-        if (idx !== -1) openLb(idx);
-      }, { capture: false });
-    });
+  function visibleItemsViajes() {
+    const activePage = document.querySelector('.page.active');
+    if (!activePage) return [];
+    return Array.from(activePage.querySelectorAll('.gal-item'))
+      .filter(el => !el.classList.contains('gal-item--ver-mas'));
   }
+
+  function showLbViajes(idx) {
+    const item = lbItems[idx];
+    if (!item) return;
+    const i = item.querySelector('img');
+    const s = item.querySelector('.gal-overlay__label');
+    lbImg.src           = i ? i.src  : '';
+    lbImg.alt           = i ? i.alt  : '';
+    lbLabel.textContent = s ? s.textContent : '';
+  }
+
+  function openLbViajes(idx) {
+    lbIdx = idx;
+    lb.dataset.mode = 'viajes';
+    showLbViajes(idx);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function navigateViajes(dir) {
+    if (!lbItems.length) return;
+    lbIdx = (lbIdx + dir + lbItems.length) % lbItems.length;
+    showLbViajes(lbIdx);
+  }
+
+  // Delegar clicks en los contenedores (una sola vez)
+  [gallery, document.getElementById('galeriaCompletaGrid')].forEach(container => {
+    if (!container) return;
+    container.addEventListener('click', e => {
+      // si el click viene del botón ver-más, ignorar
+      if (e.target.closest('.gal-item__ver-mas')) return;
+      const item = e.target.closest('.gal-item');
+      if (!item || item.classList.contains('gal-item--ver-mas')) return;
+      lbItems = visibleItemsViajes();
+      const idx = lbItems.indexOf(item);
+      if (idx !== -1) openLbViajes(idx);
+    });
+  });
+
+  // Flechas del lightbox en modo viajes
+  const lbPrevViajes = document.getElementById('lbPrev');
+  const lbNextViajes = document.getElementById('lbNext');
+  if (lbPrevViajes) lbPrevViajes.addEventListener('click', e => {
+    if (lb.dataset.mode !== 'viajes') return;
+    e.stopPropagation();
+    navigateViajes(-1);
+  });
+  if (lbNextViajes) lbNextViajes.addEventListener('click', e => {
+    if (lb.dataset.mode !== 'viajes') return;
+    e.stopPropagation();
+    navigateViajes(+1);
+  });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open') || lb.dataset.mode !== 'viajes') return;
+    if (e.key === 'ArrowLeft')  navigateViajes(-1);
+    if (e.key === 'ArrowRight') navigateViajes(+1);
+  });
 
   /* ── Filtros países ─────────────────────────────────────── */
   filtrosPaises.addEventListener('click', e => {
