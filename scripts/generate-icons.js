@@ -46,3 +46,13 @@ const sizes = [
     .toFile(path.join(ROOT, 'og-image.jpg'));
   console.log('og-image.jpg  1200x630');
 })();
+
+/* NOTA (jun 2026): los iconos actuales se generan con ImageMagick
+   (logo sobre cuadrado redondeado morado #A380B6), no con el flujo
+   de arriba. Comandos:
+     convert docs/logo.jpeg -fuzz 8% -transparent white -trim +repage art.png
+     convert -size 512x512 xc:none -fill "#A380B6" -draw "roundrectangle 0,0,511,511,120,120" bg.png
+     convert art.png -resize 410x410 art512.png
+     composite -gravity center art512.png bg.png master512.png
+     # favicon-16/32/48, icon-192/512 = resize de master512
+     # apple-touch-icon = igual pero fondo cuadrado sin transparencia
