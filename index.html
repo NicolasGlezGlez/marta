@@ -92,7 +92,6 @@
         <button class="nav-link"        onclick="showPage('arquitectura')" data-page="arquitectura">Arquitectura</button>
         <button class="nav-link"        onclick="showPage('viajes')"   data-page="viajes">Viajes</button>
         <button class="nav-link"        onclick="showPage('sobre-mi')"     data-page="sobre-mi">Sobre mí</button>
-        <button class="nav-link"        onclick="showPage('contacto')"     data-page="contacto">Contacto</button>
       </nav>
 
       <!-- Hamburguesa -->
@@ -110,7 +109,6 @@
         <button class="nav-link" onclick="showPage('arquitectura');closeMenu()">Arquitectura</button>
         <button class="nav-link" onclick="showPage('viajes');  closeMenu()">Viajes</button>
         <button class="nav-link" onclick="showPage('sobre-mi');    closeMenu()">Sobre mí</button>
-        <button class="nav-link" onclick="showPage('contacto');    closeMenu()">Contacto</button>
       </nav>
     </div>
   </header>
@@ -131,9 +129,6 @@
           Capturo la esencia de lo natural y lo creado.
           Fotografías que inspiran, conectan y cuentan historias.
         </p>
-        <button class="inicio__cta" onclick="document.getElementById('mi-trabajo').scrollIntoView({behavior:'smooth'})">
-          Ver trabajos
-        </button>
       </div>
 
       <!-- Mi Trabajo -->
@@ -266,18 +261,60 @@
 
     <!-- ─── SOBRE MÍ ─────────────────────────── -->
     <section id="sobre-mi" class="page">
-      <div class="placeholder-page">
-        <h1 class="placeholder-page__title font-display">Sobre mí</h1>
-        <p class="placeholder-page__note">Próximamente</p>
-      </div>
-    </section>
+      <div class="sobre-mi">
 
+        <h1 class="sobre-mi__title font-display">Hola, soy Marta</h1>
 
-    <!-- ─── CONTACTO ─────────────────────────── -->
-    <section id="contacto" class="page">
-      <div class="placeholder-page">
-        <h1 class="placeholder-page__title font-display">Contacto</h1>
-        <p class="placeholder-page__note">Próximamente</p>
+        <!-- Bloque 1: texto + foto derecha -->
+        <div class="sobre-mi__row">
+          <div class="sobre-mi__text">
+            <p>
+              Tengo 30 años y soy de Pontevedra. Desde pequeña siempre he sentido una gran
+              curiosidad por observar el mundo que me rodea. Me gusta fijarme en los detalles,
+              descubrir rincones especiales y encontrar belleza en lugares que a menudo pasan
+              desapercibidos.
+            </p>
+            <p>
+              La fotografía es una de mis grandes pasiones. Disfruto especialmente fotografiando
+              arquitectura, paisajes y esos momentos que cuentan una historia sin necesidad de
+              palabras.
+            </p>
+            <p>
+              Para mí, una imagen no es solo una fotografía: es una forma de transmitir emociones,
+              recuerdos y sensaciones.
+            </p>
+          </div>
+          <figure class="sobre-mi__photo">
+            <img src="photos/sobre-mi/optimized/sobre-mi-01.jpg"
+                 alt="Marta en un camino junto a la costa" loading="lazy">
+          </figure>
+        </div>
+
+        <!-- Bloque 2: foto izquierda + texto -->
+        <div class="sobre-mi__row sobre-mi__row--reverse">
+          <div class="sobre-mi__text">
+            <p>
+              También me apasionan el diseño gráfico y el mundo audiovisual. Me encanta crear,
+              experimentar y dar forma a ideas que conecten con las personas de una manera
+              auténtica.
+            </p>
+            <p>
+              Cuando no estoy detrás de una cámara, probablemente esté recorriendo alguna
+              carretera de Galicia, descubriendo nuevos lugares o buscando la próxima ciudad
+              para viajar.
+            </p>
+            <p>
+              Creo que las mejores historias aparecen cuando nos permitimos salir a buscarlas.
+              Y eso es precisamente lo que intento hacer cada vez que cojo la cámara: capturar
+              pequeños instantes que merecen ser recordados.
+            </p>
+          </div>
+          <figure class="sobre-mi__photo">
+            <img src="photos/sobre-mi/optimized/sobre-mi-02.jpg"
+                 alt="Marta con su moto en una carretera de Galicia" loading="lazy">
+          </figure>
+        </div>
+
       </div>
     </section>
 

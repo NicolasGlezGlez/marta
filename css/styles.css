@@ -557,6 +557,77 @@ main { padding-top: 5rem; }
 }
 
 /* ============================================================
+   SOBRE MÍ
+   ============================================================ */
+.sobre-mi {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 4rem;
+}
+
+.sobre-mi__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.6rem, 5vw, 3.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--accent);
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sobre-mi__row {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.sobre-mi__row:last-child { margin-bottom: 0; }
+
+.sobre-mi__row--reverse { flex-direction: row-reverse; }
+
+.sobre-mi__text {
+  flex: 1 1 55%;
+}
+
+.sobre-mi__text p {
+  font-size: .9rem;
+  font-weight: 300;
+  color: var(--gray-600);
+  line-height: 1.9;
+  margin-bottom: 1.1rem;
+}
+
+.sobre-mi__text p:last-child { margin-bottom: 0; }
+
+.sobre-mi__photo {
+  flex: 1 1 45%;
+  margin: 0;
+}
+
+.sobre-mi__photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: .75rem;
+  box-shadow: 0 10px 30px rgba(15, 15, 15, .12);
+}
+
+/* Móvil: foto siempre debajo del texto */
+@media (max-width: 768px) {
+  .sobre-mi { padding: 2.5rem 1.25rem 3rem; }
+  .sobre-mi__title { margin-bottom: 2rem; }
+  .sobre-mi__row,
+  .sobre-mi__row--reverse {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 .footer {
